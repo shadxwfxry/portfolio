@@ -1,25 +1,25 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, Server, Shield, Cpu } from 'lucide-react';
+import { Terminal as TerminalIcon, Server, Cpu } from 'lucide-react';
 import { useLangStore, dict } from '../lib/i18n';
+
+// 1. Описываем типы данных
 type HistoryItem = {
     type: 'cmd' | 'res';
     text: string | React.ReactNode;
 };
 
 export default function Terminal() {
-    // Оставляем только по одной копии каждого стейта
     const [activeTab, setActiveTab] = useState('interactive');
     const [input, setInput] = useState('');
-    const [history, setHistory] = useState<HistoryItem[]>([]); // Наш исправленный типизированный стейт
+    const [history, setHistory] = useState<HistoryItem[]>([]);
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+
     const { lang } = useLangStore();
     const t = dict[lang].terminal;
-
-    // ... дальше твой useEffect и handleCommand ...
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -29,20 +29,53 @@ export default function Terminal() {
 
     const handleCommand = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            const cmd = input.toLowerCase().trim();
-            let response: any = "";
+            const rawInput = input.trim();
+            if (!rawInput) return;
 
-            switch (cmd) {
-                case 'help': response = "whoami, nano, ls, sudo, status, pwd, fastfetch"; break;
-                case 'whoami': response = "shadxwfxry"; break;
-                case 'nano readme.md': response = "It's isn't real console, bro"; break;
-                case 'ls': response = "readme.md"; break;
-                case 'sudo': response = "Nice idea, but NO."; break;
-                case 'sudo rm -rf /': response = "Seriously?"; break;
-                case 'status': response = "All systems operational. Uptime: 99.9%. Kernel: Active."; break;
-                case 'pwd': response = "/portfolio/user/shadxwfxry"; break;
-                case 'fastfetch':
-                    let rawArt = `
+            // УМНЫЙ ПАРСИНГ: отделяем команду от аргументов
+            const [baseCmd, ...args] = rawInput.toLowerCase().split(/\s+/);
+            const stringArgs = rawInput.substring(baseCmd.length).trim().toLowerCase();
+
+            let response: string | React.ReactNode = "";
+
+            switch (baseCmd) {
+                case 'help':
+                    response = "whoami, nano, ls, sudo, status, pwd, motor, fastfetch, clear";
+                    break;
+                case 'whoami':
+                    response = "shadxwfxry";
+                    break;
+                case 'ls':
+                    response = "readme.md";
+                    break;
+                case 'pwd':
+                    response = "/portfolio/user/shadxwfxry";
+                    break;
+                case 'status':
+                    response = "All systems operational. Uptime: 99.9%. Kernel: Active.";
+                    break;
+                case 'motor':
+                    response = "Night Fury (Voge 500R) - Status: Primed for next acceleration.";
+                    break;
+                case 'nano':
+                    if (stringArgs === 'readme.md') {
+                        response = "It isn't a real console, bro";
+                    } else if (stringArgs === "") {
+                        response = "nano: missing filename";
+                    } else {
+                        response = `nano: ${stringArgs}: No such file or directory`;
+                    }
+                    break;
+                case 'sudo':
+                    if (stringArgs === 'rm -rf /') {
+                        response = "Seriously?";
+                    } else {
+                        response = "Nice idea, but NO.";
+                    }
+                    break;
+                case 'fastfetch': {
+                    // Используем блок {}, чтобы изолировать let
+                    const rawArt = `
 ...................................:=+***#######***+=-...................................
 .............................-*###########################*-.............................
 .........................*#####################################*.........................
@@ -91,11 +124,7 @@ export default function Terminal() {
 .........................*#####################################*.........................
 .............................-*###########################*=.............................
 ...................................-+***#########***+-...................................
-`;
-
-                    let coloredArt = rawArt
-                        .replace(/\./g, ' ')
-                        .replace(/@/g, '<span class="text-red-500">=</span>');
+`.replace(/\./g, ' ').replace(/@/g, '<span class="text-red-500">=</span>');
 
                     response = (
                         <div className="flex flex-col md:flex-row gap-4 py-2 items-start">
@@ -110,7 +139,7 @@ export default function Terminal() {
                                         transform: 'scale(0.35)',
                                         transformOrigin: 'top left'
                                     }}
-                                    dangerouslySetInnerHTML={{ __html: coloredArt }}
+                                    dangerouslySetInnerHTML={{ __html: rawArt }}
                                 />
                                 <style>{`
                                     @media (min-width: 768px) {
@@ -118,14 +147,13 @@ export default function Terminal() {
                                     }
                                 `}</style>
                             </div>
-
                             <div className="text-sm pt-2">
                                 <div className="text-green-400 font-bold">root@shadxwfxry</div>
                                 <div className="text-gray-500">-----------------</div>
                                 <div><span className="text-green-500">OS:</span> shadxwfxry GNU/Linux</div>
                                 <div><span className="text-green-500">Host:</span> Lenovo A5000 (Home Server)</div>
                                 <div><span className="text-green-500">Kernel:</span> 5.15.0-v7l+</div>
-                                <div><span className="text-green-500">Uptime:</span> loading... ↻</div>
+                                <div><span className="text-green-500">Uptime:</span> 14 days, 2 hours</div>
                                 <div><span className="text-green-500">Shell:</span> bash 5.2</div>
                                 <div><span className="text-green-500">CPU:</span> ARM Cortex-A7 (4) @ 1.3GHz</div>
                                 <div><span className="text-green-500">RAM:</span> 482MiB / 1024MiB</div>
@@ -140,11 +168,16 @@ export default function Terminal() {
                         </div>
                     );
                     break;
-                case 'clear': setHistory([]); setInput(''); return;
-                default: response = t.unknown;
+                }
+                case 'clear':
+                    setHistory([]);
+                    setInput('');
+                    return;
+                default:
+                    response = t.unknown;
             }
 
-            setHistory([...history, { type: 'cmd', text: `root@shadxwfxry:~# ${input}` }, { type: 'res', text: response }]);
+            setHistory([...history, { type: 'cmd', text: `root@shadxwfxry:~# ${rawInput}` }, { type: 'res', text: response }]);
             setInput('');
         }
     };
@@ -158,7 +191,7 @@ export default function Terminal() {
                 <div
                     ref={scrollRef}
                     className="flex flex-col gap-1 overflow-y-auto h-full pr-2 cursor-text"
-                    onClick={() => inputRef.current?.focus()} /* <-- Клик по всему окну фокусирует ввод */
+                    onClick={() => inputRef.current?.focus()}
                 >
                     <span className="text-gray-500">{t.welcome}</span>
                     {history.map((line, i) => (
@@ -167,10 +200,9 @@ export default function Terminal() {
                         </div>
                     ))}
                     <div className="flex gap-2">
-                        <span className="text-green-500 whitespace-nowrap">root@night-fury:~#</span>
+                        <span className="text-green-500 whitespace-nowrap">root@shadxwfxry:~#</span>
                         <input
-                            ref={inputRef} /* <-- Привязали инпут */
-                            /* autoFocus удален! */
+                            ref={inputRef}
                             className="bg-transparent border-none outline-none flex-1 text-gray-300 p-0 m-0"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
@@ -187,10 +219,8 @@ export default function Terminal() {
             content: (
                 <div className="overflow-y-auto h-full pr-2">
                     <span className="text-gray-500">#!/bin/bash</span><br />
-                    <span className="text-gray-500"># Initialization script for ARM home server</span><br /><br />
                     <span className="text-green-500">echo</span> <span className="text-amber-300">{"\"shadxwfxry GNU/Linux...\""}</span><br />
                     <span className="text-green-500">systemctl</span> start watchdog.service<br />
-                    <span className="text-green-500">node</span> /var/www/telegram-bot/app.js &amp;<br />
                     <span className="text-blue-400">[ OK ]</span> Lenovo A5000 (Home Server) online.
                 </div>
             )
@@ -202,11 +232,8 @@ export default function Terminal() {
             content: (
                 <div className="overflow-y-auto h-full pr-2">
                     <span className="text-gray-500">#!/bin/bash</span><br />
-                    <span className="text-purple-400">THRESHOLD</span>=85<br /><br />
-                    <span className="text-green-500">df</span> -H | <span className="text-purple-400">while read</span> output;<br />
-                    <span className="text-purple-400">do</span><br />
-                    &nbsp;&nbsp;<span className="text-green-500">echo</span> <span className="text-amber-300">{"\"[SYSTEM] Analyzing storage...\""}</span><br />
-                    <span className="text-purple-400">done</span>
+                    <span className="text-purple-400">THRESHOLD</span>=85<br />
+                    <span className="text-green-500">echo</span> <span className="text-amber-300">{"\"[SYSTEM] Analyzing storage...\""}</span>
                 </div>
             )
         }
