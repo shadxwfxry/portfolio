@@ -3,15 +3,23 @@
 import { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon, Server, Shield, Cpu } from 'lucide-react';
 import { useLangStore, dict } from '../lib/i18n';
+type HistoryItem = {
+    type: 'cmd' | 'res';
+    text: string | React.ReactNode;
+};
 
 export default function Terminal() {
+    // Оставляем только по одной копии каждого стейта
     const [activeTab, setActiveTab] = useState('interactive');
     const [input, setInput] = useState('');
-    const [history, setHistory] = useState<any[]>([]);
+    const [history, setHistory] = useState<HistoryItem[]>([]); // Наш исправленный типизированный стейт
+
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const { lang } = useLangStore();
     const t = dict[lang].terminal;
+
+    // ... дальше твой useEffect и handleCommand ...
 
     useEffect(() => {
         if (scrollRef.current) {
