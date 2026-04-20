@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Плавный скролл для всей страницы */
+html {
+  scroll-behavior: smooth !important;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #0c1118;
+  color: white;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Стилизация скроллбара под темную тему */
+/* Стилизация скроллбара под твой зеленый */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  /* Тот самый зеленый */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  /* Легкое свечение */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+  /* Чуть светлее при наведении */
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #22c55e #0a0a0a;
+}

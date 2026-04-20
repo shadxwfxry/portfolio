@@ -1,0 +1,61 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import { useLangStore, dict } from '../lib/i18n'; // Импортируем нашу логику
+
+export default function Navbar() {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    // Подключаем управление языком
+    const { lang, setLang } = useLangStore();
+    const t = dict[lang].nav;
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    return (
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${isScrolled
+                ? 'bg-[#0c1118]/80 backdrop-blur-md border-white/10 py-3'
+                : 'bg-transparent border-transparent py-5'
+            } px-6 md:px-12 flex justify-between items-center`}>
+            <div className="text-white font-bold tracking-wider text-lg">
+                artem<span className="text-blue-500">.</span>zhosan
+            </div>
+
+            <div className="flex items-center gap-6">
+                {/* Кнопки переключения языков */}
+                <div className="flex gap-3 text-xs font-mono font-bold">
+                    <button
+                        onClick={() => setLang('en')}
+                        className={`transition-colors ${lang === 'en' ? 'text-blue-400' : 'text-gray-500 hover:text-gray-300'}`}
+                    >EN</button>
+                    <button
+                        onClick={() => setLang('ru')}
+                        className={`transition-colors ${lang === 'ru' ? 'text-blue-400' : 'text-gray-500 hover:text-gray-300'}`}
+                    >RU</button>
+                    <button
+                        onClick={() => setLang('ua')}
+                        className={`transition-colors ${lang === 'ua' ? 'text-blue-400' : 'text-gray-500 hover:text-gray-300'}`}
+                    >UA</button>
+                </div>
+
+                <a
+                    href="https://github.com/shadxwfxry"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hidden md:flex items-center gap-2 px-4 py-2 border border-white/10 rounded-md text-sm text-gray-300 hover:bg-white/5 hover:border-blue-500/30 transition-all"
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    <span>{t.source}</span>
+                </a>
+            </div>
+        </nav>
+    );
+}
