@@ -153,10 +153,10 @@ export default function Terminal() {
                                 <div><span className="text-green-500">OS:</span> shadxwfxry GNU/Linux</div>
                                 <div><span className="text-green-500">Host:</span> Lenovo A5000 (Home Server)</div>
                                 <div><span className="text-green-500">Kernel:</span> 5.15.0-v7l+</div>
-                                <div><span className="text-green-500">Uptime:</span> 14 days, 2 hours</div>
+                                <div><span className="text-green-500">Uptime:</span> loading...</div>
                                 <div><span className="text-green-500">Shell:</span> bash 5.2</div>
                                 <div><span className="text-green-500">CPU:</span> ARM Cortex-A7 (4) @ 1.3GHz</div>
-                                <div><span className="text-green-500">RAM:</span> 482MiB / 1024MiB</div>
+                                <div><span className="text-green-500">RAM:</span> ⟳ MiB / 1024MiB</div>
                                 <div className="flex gap-2 mt-2">
                                     <div className="w-3 h-3 bg-red-500"></div>
                                     <div className="w-3 h-3 bg-green-500"></div>
