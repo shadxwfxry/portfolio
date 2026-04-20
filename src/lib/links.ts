@@ -1,8 +1,7 @@
 // Описываем структуру объекта для TypeScript
 interface ProjectLinks {
-    telegramBot: string;
-    homeServer: string;
-    itMultitool: string;
+    valentinBot: string;
+    cineplexApp: string;
 }
 
 export const projectLinks: ProjectLinks = {
