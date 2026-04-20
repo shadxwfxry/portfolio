@@ -7,8 +7,7 @@ export interface ProjectData {
 }
 
 export const projectsList: ProjectData[] = [
-    { id: "bot", status: "Deployed", linkKey: "telegramBot" },
-    { id: "server", status: "Active", linkKey: "homeServer" },
-    { id: "multitool", status: "Security", linkKey: "itMultitool" },
+    { id: "valentin", status: "Deployed", linkKey: "valentinBot" },
+    { id: "cineplex", status: "Deployed", linkKey: "cineplexApp" },
     // Чтобы добавить проект: просто добавь строку здесь и текст в i18n.ts
 ];
