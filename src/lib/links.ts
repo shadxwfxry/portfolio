@@ -1,6 +1,14 @@
-// Сюда просто вставляй свои ссылки на репозитории
-export const projectLinks = {
-    //telegramBot: "ссылка на гитхаб",
-    //homeServer: "ссылка на гитхаб",
-    //itMultitool: "ссылка на гитхаб",
+// Описываем структуру объекта, чтобы TypeScript не ругался
+interface ProjectLinks {
+    telegramBot: string;
+    homeServer: string;
+    itMultitool: string;
+}
+
+export const projectLinks: ProjectLinks = {
+    // Вставь сюда свои реальные ссылки. 
+    // Если ссылки пока нет — оставь пустую строку "" или "#"
+    telegramBot: "#",
+    homeServer: "#",
+    itMultitool: "#"
 };
