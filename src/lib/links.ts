@@ -7,7 +7,6 @@ interface ProjectLinks {
 
 export const projectLinks: ProjectLinks = {
     // Вставь свои ссылки (или оставь "#", если пока пусто)
-    telegramBot: "#",
-    homeServer: "#",
-    itMultitool: "#"
+    valentinBot: "https://github.com/shadxwfxry/valentine-bot",
+    cineplexApp: "https://github.com/shadxwfxry/cineplex"
 };
