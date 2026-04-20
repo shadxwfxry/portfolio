@@ -1,4 +1,4 @@
-// Описываем структуру объекта, чтобы TypeScript не ругался
+// Описываем структуру объекта для TypeScript
 interface ProjectLinks {
     telegramBot: string;
     homeServer: string;
@@ -6,8 +6,7 @@ interface ProjectLinks {
 }
 
 export const projectLinks: ProjectLinks = {
-    // Вставь сюда свои реальные ссылки. 
-    // Если ссылки пока нет — оставь пустую строку "" или "#"
+    // Вставь свои ссылки (или оставь "#", если пока пусто)
     telegramBot: "#",
     homeServer: "#",
     itMultitool: "#"

@@ -27,7 +27,7 @@ export default function ProjectsGrid() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, i) => (
-                    <motion.div key={i} whileHover={{ y: -5 }} className="group relative p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 transition-all overflow-hidden">
+                    <motion.div key={i} whileHover={{ y: -5 }} className="group relative p-8 rounded-2xl bg-white/2 border border-white/5 hover:border-blue-500/30 transition-all overflow-hidden">
                         <div className="text-[10px] font-bold text-blue-400 mb-4 tracking-widest uppercase">{project.tag}</div>
                         <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{project.title}</h3>
                         <p className="text-gray-400 text-sm leading-relaxed mb-8">{project.desc}</p>
