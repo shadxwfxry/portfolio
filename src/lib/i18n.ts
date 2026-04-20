@@ -41,17 +41,13 @@ export const dict = {
             badge: "Selected Work",
             title: "Latest Deployments",
             items: {
-                bot: {
-                    title: "Interactive Quest Bot",
-                    desc: "Personalized Telegram bot with automated quiz mechanics and custom web-hooks."
+                 valentin: {
+                    title: "Quest Bot & Web Landing",
+                    desc: "A multilingual Telegram bot with a quest-based authentication system. It includes in-memory state storage, a content generator, and integration with a secure web landing page."
                 },
-                server: {
-                    title: "ARM Home Server",
-                    desc: "Full-scale Alpine Linux server hosted on a repurposed Lenovo device for automation."
-                },
-                multitool: {
-                    title: "Persistence SSD Toolkit",
-                    desc: "Custom security toolkit with live-environments and persistence for penetration testing."
+                cineplex: {
+                    title: "CinePlex — Co-Watching",
+                    desc: "A standalone web application for collaborative video viewing. On-the-fly media transcoding, NAT traversal via tunnels, and strict player synchronization via WebSockets."
                 }
             }
         }
@@ -84,17 +80,15 @@ export const dict = {
             badge: "Мои Работы",
             title: "Последние Проекты",
             items: {
-                bot: {
-                    title: "Интерактивный Квест-Бот",
-                    desc: "Персонализированный Telegram-бот с автоматикой викторин и веб-хуками."
+                 valentin: {
+                    title: "Quest Bot & Web Landing",
+                    desc: "Мультиязычный Telegram-бот с системой авторизации через квест. Включает in-memory хранилище состояний, генератор контента и интеграцию с защищенным веб-лендингом."
                 },
-                server: {
-                    title: "ARM Домашний Сервер",
-                    desc: "Полноценный сервер на Alpine Linux, развернутый на смартфоне Lenovo A5000."
-                },
-                multitool: {
-                    title: "IT Мультитул (SSD)",
-                    desc: "Переносной SSD с набором Live-систем и режимом persistence для пентеста."
+                cineplex: {
+                    title: "CinePlex — Co-Watching",
+                    desc: "Автономное веб-приложение для совместного просмотра видео. Транскодинг медиа на лету, обход NAT через туннели и жесткая синхронизация плееров по веб-сокетам."
+    }
+}
                 }
             }
         }
@@ -127,17 +121,13 @@ export const dict = {
             badge: "Мої Роботи",
             title: "Останні Проекти",
             items: {
-                bot: {
-                    title: "Інтерактивний Квест-Бот",
-                    desc: "Персоналізований Telegram-бот з автоматикою вікторин та веб-хуками."
+                 valentin: {
+                    title: "Quest Bot & Web Landing",
+                    desc: "Багатомовний Telegram-бот з системою авторизациії через квест. Включає in-memory сховище станів, генератор контенту і интеграцію з захищеним веб-лендингом."
                 },
-                server: {
-                    title: "ARM Домашній Сервер",
-                    desc: "Повноцінний сервер на Alpine Linux, розгорнутий на смартфоні Lenovo A5000."
-                },
-                multitool: {
-                    title: "IT Мультитул (SSD)",
-                    desc: "Переносний SSD з набором Live-систем та режимом persistence для пентесту."
+                cineplex: {
+                    title: "CinePlex — Co-Watching",
+                    desc: "Автономний веб-застосунок для сумісного перегляду відео. Транскодинг медіа на льоту, обхід NAT через тунелі та жорстка синхронізація плеєрів по веб-сокетам."
                 }
             }
         }
