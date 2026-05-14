@@ -25,7 +25,7 @@ export default function Descent() {
     }, [isInView]);
 
     return (
-        <section ref={ref} className="relative flex flex-col items-center justify-center py-32 bg-gradient-to-b from-[#0c1118] to-black z-10">
+        <section ref={ref} className="relative flex flex-col items-center justify-center py-32 bg-black z-10">
             <motion.div animate={{ scaleY: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity }} className="w-[1px] h-20 bg-gradient-to-b from-blue-500 to-green-500 mb-8 origin-top" />
             <div className="text-center font-mono relative">
                 <div className="text-[10px] md:text-xs tracking-[0.3em] text-blue-400/50 mb-4">{t.crossing}</div>

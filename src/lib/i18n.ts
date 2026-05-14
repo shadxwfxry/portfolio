@@ -41,7 +41,15 @@ export const dict = {
             badge: "Selected Work",
             title: "Latest Deployments",
             items: {
-                 valentin: {
+                motolog: {
+                    title: "MotoLog — Maintenance Tracker",
+                    desc: "A specialized PWA for motorcycle maintenance logging. Features odometer-based service reminders, fuel tracking, and technical history management."
+                },
+                "saas-crm": {
+                    title: "SaaS CRM MVP",
+                    desc: "A multi-tenant CRM platform that allows companies to deploy their own isolated CRM instances. Built with modular architecture for scalability."
+                },
+                valentin: {
                     title: "Quest Bot & Web Landing",
                     desc: "A multilingual Telegram bot with a quest-based authentication system. It includes in-memory state storage, a content generator, and integration with a secure web landing page."
                 },
@@ -80,6 +88,14 @@ export const dict = {
             badge: "Мои Работы",
             title: "Последние Проекты",
             items: {
+                motolog: {
+                    title: "MotoLog — Журнал обслуживания",
+                    desc: "Специализированное PWA для учета обслуживания мотоцикла. Напоминания о сервисе по пробегу, учет топлива и история технических работ."
+                },
+                "saas-crm": {
+                    title: "SaaS CRM MVP",
+                    desc: "Мультиарендная CRM-платформа, позволяющая компаниям разворачивать собственные изолированные экземпляры CRM. Модульная архитектура для масштабируемости."
+                },
                 valentin: {
                     title: "Quest Bot & Web Landing",
                     desc: "Мультиязычный Telegram-бот с системой авторизации через квест. Включает in-memory хранилище состояний, генератор контента и интеграцию с защищенным веб-лендингом."
@@ -119,6 +135,14 @@ export const dict = {
             badge: "Мої Роботи",
             title: "Останні Проекти",
             items: {
+                motolog: {
+                    title: "MotoLog — Журнал обслуговування",
+                    desc: "Спеціалізований PWA для обліку обслуговування мотоцикла. Нагадування про сервіс за пробігом, облік пального та історія технічних робіт."
+                },
+                "saas-crm": {
+                    title: "SaaS CRM MVP",
+                    desc: "Мультиорендна CRM-платформа, що дозволяє компаніям розгортати власні ізольовані екземпляри CRM. Модульна архітектура для масштабованості."
+                },
                 valentin: {
                     title: "Quest Bot & Web Landing",
                     desc: "Багатомовний Telegram-бот із системою авторизації через квест. Включає in-memory сховище станів, генератор контенту та інтеграцію із захищеним веб-лендінгом."
